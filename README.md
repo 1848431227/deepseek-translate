@@ -1,63 +1,128 @@
-# deepseek-translate
+# DeepSeek Office Translator
 
-> **一键把 Word / Excel 文档完整翻译成另一种语言，排版、样式、公式、VBA 统统不动！**  
-> 基于 [DeepSeek](https://deepseek.com) 大模型 · 支持 `openai-python` **0.x** / **1.x** 双版本 SDK
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
 
----
+[English](#english) | [中文](#中文)
 
-## 功能亮点
+<a name="english"></a>
+## 🌍 DeepSeek Office Translator
 
-|  | 功能 |
-|---|---|
-| 📄 **双格式支持** | 直接翻译 `.docx`（Word）和 `.xlsx`（Excel）文件 |
-| 🎨 **保持原始排版** | 字体、段落样式、文本颜色、合并单元格、公式、VBA 宏全部保留 |
-| 🧩 **SDK 自动兼容** | 无需改代码，即可在旧版 `openai`（0.x）或新版 `openai`（≥1.x）环境下运行 |
-| 🔄 **批量分段翻译** | 自动切分段落 / 单元格，智能分批避免上下文长度溢出 |
-| 🛡 **键名兜底容错** | 即使模型偶发返回奇怪 JSON 字段也能自动修复 |
-| 🌍 **多语言** | 内置 30+ 语言代码映射，可用别名如 `cn`→`zh`、`eng`→`en` |
-| 🛠 **CLI 即开即用** | `deepseek_translate.py <文件> -l <目标语言>`，省心省力 |
+A powerful tool that translates Microsoft Office documents (Word & Excel) while preserving their original formatting using the DeepSeek API.
 
----
+### ✨ Features
 
-## 快速开始
+- Supports both `.docx` and `.xlsx` file formats
+- Preserves all original document formatting
+- Supports 30+ languages including Chinese, English, Japanese, Korean, and more
+- Smart batch processing for optimal translation efficiency
+- Compatible with both openai-python 0.x and 1.x SDK versions
 
-### 1. 安装依赖
+### 🚀 Installation
 
 ```bash
-# Python ≥3.9
 pip install -r requirements.txt
-# 或手动安装
-pip install openai~=1.14.0 python-docx openpyxl tiktoken tqdm
-## 2. 配置 DeepSeek API Key
+```
+
+### 🔑 Configuration
+
+Set your DeepSeek API key as an environment variable:
 
 ```bash
-export DEEPSEEK_API_KEY="sk-xxxxxxxxxxxxxxxx"
+export DEEPSEEK_API_KEY="your-api-key"
+```
 
-## 3. 翻译文件
+Or modify the `API_KEY` variable in the script directly.
+
+### 📖 Usage
 
 ```bash
-# 将 test.docx 翻译成日语
-python deepseek_translate.py test.docx -l ja
+python deepseek_translate.py [-h] -l TARGET_LANG file
 
-# 将 data.xlsx 翻译成繁体中文
-python deepseek_translate.py data.xlsx -l zh-tw
+# Example: Translate a Word document to English
+python deepseek_translate.py document.docx -l en
 
-| 代码    | 语言               | 代码 | 语言            |
-| ----- | ---------------- | -- | ------------- |
-| zh    | 简体中文             | ja | 日本語           |
-| zh-tw | 繁體中文             | ko | 한국어           |
-| en    | English          | fr | Français      |
-| de    | Deutsch          | es | Español       |
-| it    | Italiano         | pt | Português     |
-| ru    | Русский          | nl | Nederlands    |
-| pl    | Polski           | tr | Türkçe        |
-| vi    | Tiếng Việt       | th | ไทย           |
-| id    | Bahasa Indonesia | ms | Bahasa Melayu |
-| hi    | हिन्दी           | bn | বাংলা         |
-| ta    | தமிழ்            | ar | العربية       |
-| fa    | فارسی            | he | עברית         |
-| sw    | Kiswahili        | el | Ελληνικά      |
-| cs    | Čeština          | hu | Magyar        |
-| ro    | Română           | uk | Українська    |
-| fi    | Suomi            | sv | Svenska       |
-| da    | Dansk            | no | Norsk         |
+# Example: Translate an Excel file to Japanese
+python deepseek_translate.py spreadsheet.xlsx -l ja
+
+# List all supported languages
+python deepseek_translate.py --list-languages
+```
+
+### 🌐 Supported Languages
+
+The tool supports translation between numerous languages, including but not limited to:
+- Chinese (简体中文)
+- English
+- Japanese (日本語)
+- Korean (한국어)
+- French (Français)
+- German (Deutsch)
+- Spanish (Español)
+- And many more...
+
+Use `--list-languages` to see the complete list of supported languages and their codes.
+
+---
+
+<a name="中文"></a>
+## 🌍 DeepSeek Office 文档翻译工具
+
+一个强大的文档翻译工具，可以翻译 Microsoft Office 文档（Word 和 Excel），同时保持原有格式，基于 DeepSeek API。
+
+### ✨ 特性
+
+- 支持 `.docx` 和 `.xlsx` 文件格式
+- 完整保留原文档格式
+- 支持超过 30 种语言，包括中文、英文、日文、韩文等
+- 智能分批处理，优化翻译效率
+- 兼容 openai-python 0.x 和 1.x SDK 版本
+
+### 🚀 安装
+
+```bash
+pip install -r requirements.txt
+```
+
+### 🔑 配置
+
+将 DeepSeek API 密钥设置为环境变量：
+
+```bash
+export DEEPSEEK_API_KEY="your-api-key"
+```
+
+或直接在脚本中修改 `API_KEY` 变量。
+
+### 📖 使用方法
+
+```bash
+python deepseek_translate.py [-h] -l 目标语言 文件
+
+# 示例：将 Word 文档翻译成英文
+python deepseek_translate.py document.docx -l en
+
+# 示例：将 Excel 文件翻译成日文
+python deepseek_translate.py spreadsheet.xlsx -l ja
+
+# 列出所有支持的语言
+python deepseek_translate.py --list-languages
+```
+
+### 🌐 支持的语言
+
+该工具支持多种语言之间的互译，包括但不限于：
+- 中文（简体中文）
+- 英文
+- 日文（日本語）
+- 韩文（한국어）
+- 法文（Français）
+- 德文（Deutsch）
+- 西班牙文（Español）
+- 以及更多...
+
+使用 `--list-languages` 查看完整的支持语言列表及其代码。
+
+## 📄 License
+
+MIT License 
